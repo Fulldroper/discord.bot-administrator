@@ -1,68 +1,75 @@
-# bot.discord.admin
+The goal of this project was to facilitate the moderation of Discord servers by providing a dedicated client for bot management and moderation tasks.
 
-## Build Setup
+## Project Benefits
+This project is useful for server administrators who need an efficient and user-friendly way to manage bots and perform moderation tasks on Discord servers.
+
+## Project Description
+This tool provides a client interface for managing Discord bots and performing moderation tasks. It integrates with the backend project [api.discord-bot](https://github.com/Fulldroper/api.discord-bot) for handling API requests and bot commands.
+
+## Repository Link and Installation Example
+Repository: [Discord Bot Administrator](https://github.com/Fulldroper/discord.bot-administrator)
+
+### Installation
+Clone the repository and install the dependencies:
 
 ```bash
-# install dependencies
-$ npm install
-
-# serve with hot reload at localhost:3000
-$ npm run dev
-
-# build for production and launch server
-$ npm run build
-$ npm run start
-
-# generate static project
-$ npm run generate
+git clone https://github.com/Fulldroper/discord.bot-administrator
+cd discord.bot-administrator
+npm install
 ```
 
-For detailed explanation on how things work, check out the [documentation](https://nuxtjs.org).
+### Usage
+Start the development server:
 
-## Special Directories
+```bash
+npm run dev
+```
 
-You can create the following extra directories, some of which have special behaviors. Only `pages` is required; you can delete them if you don't want to use their functionality.
+Access the client interface via the local server URL provided in the terminal output.
 
-### `assets`
+## Project Workflow
+1. **User Authentication**: Users log in to the client interface using their Discord credentials.
+    ```javascript
+    // Example of user authentication
+    async function login() {
+        const response = await fetch('/api/login', { method: 'POST', credentials: 'include' });
+        const data = await response.json();
+        if (data.success) {
+            // User is logged in
+        }
+    }
+    ```
 
-The assets directory contains your uncompiled assets such as Stylus or Sass files, images, or fonts.
+2. **Bot Management**: Users can add, remove, and configure bots for their Discord servers.
+    ```javascript
+    // Example of adding a bot
+    async function addBot(botDetails) {
+        const response = await fetch('/api/add-bot', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(botDetails)
+        });
+        const data = await response.json();
+        if (data.success) {
+            // Bot added successfully
+        }
+    }
+    ```
 
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/assets).
+3. **Moderation Tasks**: Users can perform various moderation tasks such as muting, banning users, and managing roles.
+    ```javascript
+    // Example of muting a user
+    async function muteUser(userId) {
+        const response = await fetch(`/api/mute/${userId}`, { method: 'POST' });
+        const data = await response.json();
+        if (data.success) {
+            // User muted successfully
+        }
+    }
+    ```
 
-### `components`
-
-The components directory contains your Vue.js components. Components make up the different parts of your page and can be reused and imported into your pages, layouts and even other components.
-
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/components).
-
-### `layouts`
-
-Layouts are a great help when you want to change the look and feel of your Nuxt app, whether you want to include a sidebar or have distinct layouts for mobile and desktop.
-
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/layouts).
-
-### `pages`
-
-This directory contains your application views and routes. Nuxt will read all the `*.vue` files inside this directory and setup Vue Router automatically.
-
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/get-started/routing).
-
-### `plugins`
-
-The plugins directory contains JavaScript plugins that you want to run before instantiating the root Vue.js Application. This is the place to add Vue plugins and to inject functions or constants. Every time you need to use `Vue.use()`, you should create a file in `plugins/` and add its path to plugins in `nuxt.config.js`.
-
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/plugins).
-
-### `static`
-
-This directory contains your static files. Each file inside this directory is mapped to `/`.
-
-Example: `/static/robots.txt` is mapped as `/robots.txt`.
-
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/static).
-
-### `store`
-
-This directory contains your Vuex store files. Creating a file in this directory automatically activates Vuex.
-
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/store).
+## Skills Acquired
+- Proficiency in Node.js and Nuxt.js
+- Understanding of user authentication and session management
+- Experience with RESTful API integration
+- Development of client-server architecture for bot management
